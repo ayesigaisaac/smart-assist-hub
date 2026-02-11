@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
 
-  const { messages, isLoading, sendMessage, resetMessages, loadMessages } = useChat(mode, currentConversationId);
+  const { messages, timestamps, isLoading, sendMessage, resetMessages, loadMessages, regenerate } = useChat(mode, currentConversationId);
 
   // Auth check
   useEffect(() => {
@@ -76,7 +76,6 @@ const Dashboard = () => {
   };
 
   const handleSend = async (input: string) => {
-    // Auto-create conversation on first message
     if (!currentConversationId && userId) {
       const title = input.slice(0, 50) + (input.length > 50 ? "..." : "");
       const { data } = await supabase
@@ -106,8 +105,10 @@ const Dashboard = () => {
         <ChatInterface
           mode={mode}
           messages={messages}
+          timestamps={timestamps}
           isLoading={isLoading}
           onSend={handleSend}
+          onRegenerate={regenerate}
         />
       </main>
     </div>
