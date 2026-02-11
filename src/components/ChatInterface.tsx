@@ -3,19 +3,25 @@ import { ChatMode, modes } from "@/lib/modes";
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
 import TypingIndicator from "./TypingIndicator";
+import SuggestedPrompts from "./SuggestedPrompts";
+import EmptyState from "./EmptyState";
 import type { ChatMessage as ChatMsg } from "@/lib/chat-stream";
 
 interface ChatInterfaceProps {
   mode: ChatMode;
   messages: ChatMsg[];
+  timestamps: Date[];
   isLoading: boolean;
   onSend: (message: string) => void;
+  onRegenerate: () => void;
 }
 
-const ChatInterface = ({ mode, messages, isLoading, onSend }: ChatInterfaceProps) => {
+const ChatInterface = ({ mode, messages, timestamps, isLoading, onSend, onRegenerate }: ChatInterfaceProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const modeInfo = modes[mode];
   const Icon = modeInfo.icon;
+
+  const hasOnlyGreeting = messages.length === 1 && messages[0].role === "assistant";
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -28,7 +34,7 @@ const ChatInterface = ({ mode, messages, isLoading, onSend }: ChatInterfaceProps
         <div className={`flex h-9 w-9 items-center justify-center rounded-lg bg-muted ${modeInfo.color}`}>
           <Icon className="h-5 w-5" />
         </div>
-        <div>
+        <div className="flex-1">
           <h2 className="font-heading text-sm font-semibold text-foreground">{modeInfo.label}</h2>
           <p className="text-xs text-muted-foreground">{modeInfo.description}</p>
         </div>
@@ -36,9 +42,24 @@ const ChatInterface = ({ mode, messages, isLoading, onSend }: ChatInterfaceProps
 
       {/* Messages */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto py-4">
-        {messages.map((msg, i) => (
-          <ChatMessage key={i} role={msg.role} content={msg.content} />
-        ))}
+        {hasOnlyGreeting ? (
+          <>
+            <EmptyState mode={mode} />
+            <ChatMessage role="assistant" content={messages[0].content} timestamp={timestamps[0]} />
+            <SuggestedPrompts mode={mode} onSelect={onSend} />
+          </>
+        ) : (
+          messages.map((msg, i) => (
+            <ChatMessage
+              key={i}
+              role={msg.role}
+              content={msg.content}
+              timestamp={timestamps[i]}
+              isLast={i === messages.length - 1 && msg.role === "assistant"}
+              onRegenerate={onRegenerate}
+            />
+          ))
+        )}
         {isLoading && messages[messages.length - 1]?.role === "user" && <TypingIndicator />}
       </div>
 
