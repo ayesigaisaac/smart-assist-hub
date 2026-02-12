@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import BudgetChart from "./BudgetChart";
 
 interface ChatMessageProps {
   role: "user" | "assistant";
@@ -31,7 +32,7 @@ const ChatMessage = ({ role, content, timestamp, onRegenerate, isLast }: ChatMes
       )}>
         {isUser ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
       </div>
-      <div className="flex flex-col gap-1 max-w-[80%]">
+      <div className="flex flex-col gap-1 max-w-[90%] md:max-w-[80%]">
         <div className={cn(
           "rounded-2xl px-4 py-3 text-sm leading-relaxed",
           isUser
@@ -59,6 +60,7 @@ const ChatMessage = ({ role, content, timestamp, onRegenerate, isLast }: ChatMes
                   },
                 }}
               >{content}</ReactMarkdown>
+              <BudgetChart content={content} />
             </div>
           )}
         </div>
