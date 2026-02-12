@@ -51,9 +51,12 @@ const Index = () => {
           </div>
           <span className="font-heading text-lg font-bold text-foreground">SmartAssist</span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
+          <Link to="/about">
+            <Button variant="ghost" size="sm" className="hidden sm:inline-flex">About</Button>
+          </Link>
           <Link to="/pricing">
-            <Button variant="ghost" size="sm">Pricing</Button>
+            <Button variant="ghost" size="sm" className="hidden sm:inline-flex">Pricing</Button>
           </Link>
           <Link to="/auth">
             <Button variant="ghost" size="sm">Sign In</Button>
