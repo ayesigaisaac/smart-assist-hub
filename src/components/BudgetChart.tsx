@@ -22,12 +22,14 @@ function extractBudgetData(content: string): BudgetItem[] | null {
   const items: BudgetItem[] = [];
 
   for (const line of lines) {
-    // Match patterns like "- Rent: $800" or "| Food | $300 |" or "Groceries — 250"
-    const match = line.match(/[-•|*]\s*([A-Za-z\s&/]+)[:\-—|]+\s*\$?([\d,]+(?:\.\d{2})?)/);
+    // Match "- Rent: $800", "* Food — $300", or table rows like "| Housing | 30% | $900 |"
+    const listMatch = line.match(/[-•*]\s*([A-Za-z\s&/]+)[:\-—|]+\s*\$?([\d,]+(?:\.\d{2})?)/);
+    const tableMatch = line.match(/\|\s*\*{0,2}([A-Za-z\s&/()]+?)\*{0,2}\s*\|.*?\$\s*([\d,]+(?:\.\d{2})?)/);
+    const match = listMatch || tableMatch;
     if (match) {
       const name = match[1].trim();
       const value = parseFloat(match[2].replace(",", ""));
-      if (name && value > 0 && name.length < 30) {
+      if (name && value > 0 && name.length < 30 && !name.toLowerCase().includes("total") && !name.toLowerCase().includes("category")) {
         items.push({ name, value });
       }
     }
