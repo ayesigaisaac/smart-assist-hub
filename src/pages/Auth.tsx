@@ -13,6 +13,7 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -21,26 +22,54 @@ const Auth = () => {
 
     try {
       if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        // 🔐 LOGIN
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
         if (error) throw error;
+
+        toast({
+          title: "Success",
+          description: "Login successful",
+        });
+
         navigate("/dashboard");
       } else {
-        const { error } = await supabase.auth.signUp({
+        // 🆕 SIGN UP
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
-            emailRedirectTo: window.location.origin,
             data: { display_name: displayName },
           },
         });
+
         if (error) throw error;
-        toast({
-          title: "Check your email",
-          description: "We sent you a confirmation link to verify your account.",
-        });
+
+        // If email confirmation is OFF
+        if (data.session) {
+          toast({
+            title: "Success",
+            description: "Account created successfully",
+          });
+
+          navigate("/dashboard");
+        } else {
+          toast({
+            title: "Check your email",
+            description:
+              "We sent you a confirmation link to verify your account.",
+          });
+        }
       }
     } catch (error: any) {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
@@ -57,7 +86,9 @@ const Auth = () => {
             {isLogin ? "Welcome back" : "Create account"}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            {isLogin ? "Sign in to SmartAssist Bot" : "Get started with SmartAssist Bot"}
+            {isLogin
+              ? "Sign in to SmartAssist Bot"
+              : "Get started with SmartAssist Bot"}
           </p>
         </div>
 
@@ -70,10 +101,12 @@ const Auth = () => {
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 placeholder="Your name"
+                required
                 className="mt-1"
               />
             </div>
           )}
+
           <div>
             <Label htmlFor="email">Email</Label>
             <Input
@@ -86,6 +119,7 @@ const Auth = () => {
               className="mt-1"
             />
           </div>
+
           <div>
             <Label htmlFor="password">Password</Label>
             <Input
@@ -99,14 +133,18 @@ const Auth = () => {
               className="mt-1"
             />
           </div>
+
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? "Loading..." : isLogin ? "Sign In" : "Sign Up"}
           </Button>
         </form>
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
-          {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+          {isLogin
+            ? "Don't have an account?"
+            : "Already have an account?"}{" "}
           <button
+            type="button"
             onClick={() => setIsLogin(!isLogin)}
             className="font-medium text-primary hover:underline"
           >
