@@ -25,7 +25,7 @@ const About = () => (
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
           <Bot className="h-5 w-5" />
         </div>
-        <span className="font-heading text-lg font-bold text-foreground">SmartAssist</span>
+        <span className="font-heading text-lg font-bold text-foreground">Martha Chatbot</span>
       </Link>
       <div className="flex items-center gap-3">
         <Link to="/"><Button variant="ghost" size="sm" className="gap-1"><ArrowLeft className="h-3 w-3" /> Home</Button></Link>
@@ -42,7 +42,7 @@ const About = () => (
             Building smarter tools for <span className="text-gradient">everyday life</span>
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
-            SmartAssist Bot is an AI-powered assistant that helps you manage budgets, stay healthy, excel in school, and grow better crops — all from one simple chat.
+            Martha Chatbot is an AI-powered assistant that helps you manage pocket money, stay healthy, excel in school, and grow better crops — all from one simple chat.
           </p>
         </motion.div>
       </div>
@@ -92,9 +92,9 @@ const About = () => (
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 md:flex-row">
         <div className="flex items-center gap-2">
           <Bot className="h-5 w-5 text-primary" />
-          <span className="font-heading text-sm font-bold text-foreground">SmartAssist Bot</span>
+          <span className="font-heading text-sm font-bold text-foreground">Martha Chatbot</span>
         </div>
-        <p className="text-xs text-muted-foreground">© 2026 SmartAssist Bot. All rights reserved.</p>
+        <p className="text-xs text-muted-foreground">© 2026 Martha Chatbot. All rights reserved.</p>
       </div>
     </footer>
   </div>
