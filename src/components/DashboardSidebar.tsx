@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChatMode, modes } from "@/lib/modes";
-import { Plus, MessageSquare, LogOut, ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
+import { Plus, MessageSquare, LogOut, ChevronLeft, ChevronRight, Menu, X, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
@@ -147,8 +147,20 @@ const DashboardSidebar = ({
         </div>
       )}
 
-      {/* Logout */}
-      <div className="border-t border-sidebar-border p-2">
+      {/* Profile & Logout */}
+      <div className="border-t border-sidebar-border p-2 space-y-1">
+        <Button
+          onClick={() => navigate("/profile")}
+          variant="ghost"
+          className={cn(
+            "w-full justify-start gap-2 text-sidebar-foreground hover:bg-sidebar-accent",
+            isCollapsedState && "justify-center"
+          )}
+          size="sm"
+        >
+          <User className="h-4 w-4" />
+          {!isCollapsedState && "Profile"}
+        </Button>
         <Button
           onClick={handleLogout}
           variant="ghost"
