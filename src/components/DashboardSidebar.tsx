@@ -72,7 +72,7 @@ const DashboardSidebar = ({
     )}>
       {/* Logo */}
       <div className="flex items-center justify-between border-b border-sidebar-border p-3">
-        {!isCollapsedState && <span className="font-heading text-sm font-bold text-sidebar-primary">SmartAssist</span>}
+        {!isCollapsedState && <span className="font-heading text-sm font-bold text-sidebar-primary">Martha</span>}
         <div className="flex items-center gap-1">
           <ThemeToggle />
           {isMobile ? (
