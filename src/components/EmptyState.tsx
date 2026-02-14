@@ -10,26 +10,25 @@ const EmptyState = ({ mode }: EmptyStateProps) => {
   const Icon = modeInfo.icon;
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 py-12">
+    <div className="flex flex-col items-center gap-5 px-6 py-8">
       <motion.div
-        initial={{ scale: 0.5, opacity: 0 }}
+        initial={{ scale: 0.6, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 200, damping: 20 }}
-        className="relative"
+        transition={{ type: "spring", stiffness: 180, damping: 18 }}
       >
-        <div className="absolute inset-0 rounded-full bg-primary/10 animate-ping" style={{ animationDuration: "3s" }} />
-        <div className={`flex h-20 w-20 items-center justify-center rounded-full bg-muted ${modeInfo.color}`}>
-          <Icon className="h-10 w-10" />
+        <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 ${modeInfo.color}`}>
+          <Icon className="h-8 w-8" />
         </div>
       </motion.div>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="text-center"
+        transition={{ delay: 0.15 }}
+        className="text-center max-w-md"
       >
-        <h3 className="font-heading text-lg font-semibold text-foreground">{modeInfo.label}</h3>
-        <p className="mt-1 text-sm text-muted-foreground max-w-xs">{modeInfo.description}</p>
+        <h3 className="font-heading text-2xl font-bold text-foreground">Martha</h3>
+        <p className="mt-1.5 text-sm text-muted-foreground">{modeInfo.description}</p>
+        <p className="mt-3 text-xs text-muted-foreground/70 leading-relaxed">{modeInfo.greeting}</p>
       </motion.div>
     </div>
   );
