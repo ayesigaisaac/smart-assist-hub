@@ -11,12 +11,12 @@ export const modes: Record<ChatMode, {
   suggestions: string[];
 }> = {
   budget: {
-    label: "Budget Planner",
+    label: "Pocket Money Planner",
     icon: DollarSign,
-    description: "Smart budgeting for students & beyond",
+    description: "Plan your school pocket money wisely",
     color: "text-mode-budget",
-    greeting: "Hi! I'm Martha, your Budget Planner 💰. Whether it's pocket money for school or your personal finances — tell me your budget and timeframe, and I'll help you plan it wisely!",
-    suggestions: ["Plan 200,000 UGX for a 2-month school term", "How to save from my pocket money?", "Create a monthly personal budget", "Tips to make my money last longer"],
+    greeting: "Hi! I'm Martha, your Pocket Money Planner 💰. Tell me how much pocket money you have and how long your term is, and I'll help you spend it wisely — canteen, events, savings, and more!",
+    suggestions: ["Plan how to spend 200,000 UGX for a 2-month term", "How to save from my pocket money?", "Budget for canteen, events & birthdays", "Tips to make my pocket money last the whole term"],
   },
   health: {
     label: "Health Assistant",
