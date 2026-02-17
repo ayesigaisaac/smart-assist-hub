@@ -87,8 +87,8 @@ const Auth = () => {
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             {isLogin
-              ? "Sign in to Martha Chatbot"
-              : "Get started with Martha Chatbot"}
+              ? "Sign in to SmartAssist"
+              : "Get started with SmartAssist"}
           </p>
         </div>
 

@@ -2,44 +2,74 @@ import { DollarSign, Heart, GraduationCap, Sprout } from "lucide-react";
 
 export type ChatMode = "budget" | "health" | "school" | "agriculture";
 
-export const modes: Record<ChatMode, {
-  label: string;
-  icon: typeof DollarSign;
-  description: string;
-  color: string;
-  greeting: string;
-  suggestions: string[];
-}> = {
+export const modes: Record<
+  ChatMode,
+  {
+    label: string;
+    icon: typeof DollarSign;
+    description: string;
+    color: string;
+    greeting: string;
+    suggestions: string[];
+  }
+> = {
   budget: {
-    label: "Pocket Money Planner",
+    label: "Budget Planner",
     icon: DollarSign,
-    description: "Plan your school pocket money wisely",
+    description: "Structured financial planning and pocket money optimization",
     color: "text-mode-budget",
-    greeting: "Hi! I'm Martha, your Pocket Money Planner 💰. Tell me how much pocket money you have and how long your term is, and I'll help you spend it wisely — canteen, events, savings, and more!",
-    suggestions: ["Plan how to spend 200,000 UGX for a 2-month term", "How to save from my pocket money?", "Budget for canteen, events & birthdays", "Tips to make my pocket money last the whole term"],
+    greeting:
+      "Welcome to SmartAssist — Budget Planner. Provide your total pocket money and term duration, and I will create a structured spending and savings plan covering essentials, events, and emergency reserves.",
+    suggestions: [
+      "Create a structured budget for 200,000 UGX over 2 months",
+      "How should I divide my pocket money for savings and spending?",
+      "Weekly spending plan for school canteen",
+      "How to build a small emergency fund during the term"
+    ],
   },
+
   health: {
     label: "Health Assistant",
     icon: Heart,
-    description: "Wellness tips & nutrition",
+    description: "General wellness, nutrition, and lifestyle guidance",
     color: "text-mode-health",
-    greeting: "Hello! I'm your Health Assistant. I can help with wellness tips, nutrition advice, and exercise plans. How can I help you today? 🏃‍♂️",
-    suggestions: ["Create a 7-day meal plan", "Best exercises for beginners", "How much water should I drink daily?", "Tips for better sleep"],
+    greeting:
+      "Welcome to SmartAssist — Health Assistant. I provide general wellness guidance including nutrition, exercise, sleep optimization, and healthy habit planning. How can I assist you today?",
+    suggestions: [
+      "Design a simple weekly fitness plan",
+      "Balanced meal plan for a student",
+      "How to improve sleep quality naturally",
+      "Daily hydration recommendations"
+    ],
   },
+
   school: {
-    label: "School Helper",
+    label: "Academic Support",
     icon: GraduationCap,
-    description: "Homework help & study plans",
+    description: "Structured explanations, study planning, and homework support",
     color: "text-mode-school",
-    greeting: "Hey there! I'm your School Helper. Need help with homework, study planning, or understanding a concept? Let's learn together! 📚",
-    suggestions: ["Explain photosynthesis simply", "Help me write an essay outline", "Create a study schedule for exams", "Solve this math problem step by step"],
+    greeting:
+      "Welcome to SmartAssist — Academic Support. I can help explain concepts, structure essays, solve problems step by step, and create efficient study plans. What topic are you working on?",
+    suggestions: [
+      "Explain photosynthesis in simple terms",
+      "Create a structured study plan for final exams",
+      "Help outline an argumentative essay",
+      "Solve this algebra problem step by step"
+    ],
   },
+
   agriculture: {
     label: "Agriculture Advisor",
     icon: Sprout,
-    description: "Crop tips & farming advice",
+    description: "Crop planning, soil management, and sustainable farming advice",
     color: "text-mode-agriculture",
-    greeting: "Welcome! I'm your Agriculture Advisor. I can help with crop selection, soil care, pest control, and more. What are you growing? 🌾",
-    suggestions: ["Best crops for dry climate", "How to improve soil fertility?", "Organic pest control methods", "When to plant tomatoes?"],
+    greeting:
+      "Welcome to SmartAssist — Agriculture Advisor. I provide guidance on crop selection, soil improvement, planting schedules, and pest management. What crop or farming challenge would you like assistance with?",
+    suggestions: [
+      "Best crops for semi-arid regions",
+      "How to improve soil fertility sustainably",
+      "Integrated pest management methods",
+      "Optimal planting season for tomatoes"
+    ],
   },
 };

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const features = [
   {
     icon: DollarSign,
-    title: "Pocket Money Planner",
+    title: "Budget Planner",
     description: "Plan your school pocket money wisely — canteen, events, savings, and more with AI guidance.",
     color: "text-mode-budget",
     bg: "bg-blue-50",
@@ -49,7 +49,7 @@ const Index = () => {
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
             <Bot className="h-5 w-5" />
           </div>
-          <span className="font-heading text-lg font-bold text-foreground">Martha Chatbot</span>
+          <span className="font-heading text-lg font-bold text-foreground">SmartAssist</span>
         </div>
         <div className="flex items-center gap-2 md:gap-3">
           <Link to="/about">
@@ -169,9 +169,9 @@ const Index = () => {
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 md:flex-row">
           <div className="flex items-center gap-2">
             <Bot className="h-5 w-5 text-primary" />
-            <span className="font-heading text-sm font-bold text-foreground">Martha Chatbot</span>
+            <span className="font-heading text-sm font-bold text-foreground"> SmartAssist</span>
           </div>
-          <p className="text-xs text-muted-foreground">© 2026 Martha Chatbot. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">© 2026 SmartAssist. All rights reserved.</p>
         </div>
       </footer>
     </div>
